@@ -1,0 +1,225 @@
+<body>
+    <div class="container p-3 my-3 alert-primary body ">
+        <h1 class="text-center font-weight-bold"> {{title}}</h1>
+
+        <div class="container p-3 my-3 border body">
+            <h2>Datos Personales</h2>
+
+
+            <div class="container p-3 my-3 border">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="panel body">
+                            <form class="forms-group">
+
+                                <label for="Nombre">Nombres: </label>
+                                <input placeholder="Por ejemplo, Jose" required pattern="[a-zA-Z/ ]{1,35}" type="text" title="Este campo es obligatorio, solo admite letras" class="form-control" [(ngModel)]="UsuAic.Nom" name="Nombre">
+
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Tipo documento: </label>
+                                        <select type="text" required title="Este campo es obligatorio" class="form-control" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.TipoDoc" name="TipoDocumento">
+                                        <option *ngFor="let tdoc of TipoIdentificacion" [value]="tdoc">{{tdoc}}</option>
+                                        </select>
+                                    </div>
+                                </form>
+
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Estado Civil: </label>
+                                        <select class="form-control" type="text" required title="Este campo es obligatorio" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.EstadoCiv" name="EstadoCivil">
+                                        <option *ngFor="let estCiv of EstadoCivil" [value]="estCiv">{{estCiv}}</option>
+                                        </select>
+                                    </div>
+                                </form>
+
+                                <label for="Departamento">Departamento: </label>
+                                <input placeholder="Por ejemplo, Cauca" required pattern="[a-zA-Z/ ]{1,35}" type="text" title="Este campo es obligatorio, solo admite letras" class="form-control" [(ngModel)]="UsuAic.Dept" name="Departamento">
+
+                                <label for="Correo">Correo Electrónico: </label>
+                                <input type="text" class="form-control" [(ngModel)]="UsuAic.correo" name="CorreoElectronico">
+
+
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="col-6">
+                        <div class="panel body">
+                            <form class="forms-group">
+                                <label for="Apellido">Apellidos: </label>
+                                <input placeholder="Por ejemplo, Anacona" required pattern="[a-zA-Z/ ]{1,35}" type="text" title="Este campo es obligatorio, solo admite letras" class="form-control" [(ngModel)]="UsuAic.Apell" name="Apellido">
+
+                                <label for="Identificacion">Número de documento: </label>
+                                <input placeholder="Por ejemplo, 1061725346" required pattern="[0-9]{1,15}" type="number" title="Este campo es obligatorio, solo admite números" class="form-control" [(ngModel)]="UsuAic.NumeroIdenti" name="Identificacion">
+                                <br>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Género: </label>
+                                        <select class="form-control" type="text" required title="Este campo es obligatorio" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.Gen" name="Genero">
+                                        <option *ngFor="let gen of Genero" [value]="gen">{{gen}}</option>
+                                        </select>
+                                    </div>
+                                </form>
+
+                                <label for="Municipio">Municipio: </label>
+                                <input placeholder="Por ejemplo, Popayán" required pattern="[a-zA-Z/ ]{1,35}" type="text" title="Este campo es obligatorio, solo admite letras" class="form-control" [(ngModel)]="UsuAic.Munic" name="Municipio">
+
+                                <label for="Direccion">Dirección: </label>
+                                <input type="text" class="form-control" [(ngModel)]="UsuAic.dir" name="Direccion">
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="container p-3 my-3 border">
+                    <div class="row">
+                        <div class="col-6">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Es afiliado AIC:</label>
+                                    <select class="form-control" type="text" required title="Este campo es obligatorio" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.Afiliacion" name="Aficiliacion">
+                                    <option *ngFor="let afil of Aficiliacion" [value]="afil">{{afil}}</option>
+                                    </select>
+                                </div>
+                            </form>
+
+                        </div>
+                        <div class="col-6">
+                            <div *ngIf="UsuAic.Afiliacion == 'Afiliado'">
+
+                                <label for="pueblo">Pueblo: </label>
+                                <input placeholder="Por ejemplo, Rio Blanco" required pattern="[a-zA-Z/ ]{1,35}" type="text" title="Este campo es obligatorio, solo admite letras" class="form-control" [(ngModel)]="UsuAic.puebloAfiliado" name="pueblo">
+
+                                <label for="Cabildo">Cabildo o Resguardo: </label>
+                                <input placeholder="Por ejemplo, Yanacona" required pattern="[a-zA-Z/ ]{1,35}" type="text" title="Este campo es obligatorio, solo admite letras" class="form-control" [(ngModel)]="UsuAic.cabildo" name="Cabildo">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="container p-3 my-3 ">
+
+                <h2 bold>Datos Autorización</h2>
+                <div class="container p-3 my-3 border">
+
+                    <div class="row">
+
+                        <div class="col-5">
+
+                            <div class="panel body">
+
+                                <label>Tipo Autorización : </label>
+                                <br>
+                                <mat-radio-group class="tp-radio-group" type="text" required title="Este campo es obligatorio" [(ngModel)]="UsuAic.TipAutori">
+                                    <mat-radio-button class="tp-radio-button" *ngFor="let auto of Autorizacion" [value]="auto">
+                                        {{auto}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Diágnostico Principal</label>
+                                        <select type="text" required title="Este campo es obligatorio" class="form-control" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.DiagPrinc" name="DiagnosticoPrincipal" value="UsuAic.DiagPrinc">
+                                            <option *ngFor="let Diagprin of DiagnosticoP" [value]="Diagprin">{{Diagprin}}</option>
+                                            
+                                        </select>
+                                        <div *ngIf="UsuAic.DiagPrinc=='Enfermedades infecciosas y parasitarias'">
+
+                                            <label for="exampleFormControlSelect1">Diágnostico Relacionado</label>
+                                            <select type="text" required title="Este campo es obligatorio" class="form-control" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.DiagRelac" name="DiagnosticoPrincipal">
+                                            <option *ngFor="let Diagrel of DiagnosticoRInfecciosas" [value]="Diagrel">{{Diagrel}}</option>
+                                            </select>
+                                            <!-- Execute code here if statement true -->
+
+                                        </div>
+
+                                        <div *ngIf="UsuAic.DiagPrinc=='Neoplasias'">
+
+                                            <label for="exampleFormControlSelect1">Diágnostico Relacionado</label>
+                                            <select type="text" required title="Este campo es obligatorio" class="form-control" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.DiagRelac" name="DiagnosticoPrincipal">
+                                            <option *ngFor="let Diagrel of DiagnosticoRNeoplasias" [value]="Diagrel">{{Diagrel}}</option>
+                                            </select>
+                                            <!-- Execute code here if statement true -->
+
+                                        </div>
+
+                                        <div *ngIf="UsuAic.DiagPrinc=='Embarazo-parto-puerperio'">
+
+                                            <label for="exampleFormControlSelect1">Diágnostico Relacionado</label>
+                                            <select type="text" required title="Este campo es obligatorio" class="form-control" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.DiagRelac" name="DiagnosticoPrincipal">
+                                            <option *ngFor="let Diagrel of DiagnosticoREmbarazo" [value]="Diagrel">{{Diagrel}}</option>
+                                            </select>
+                                            <!-- Execute code here if statement true -->
+
+                                        </div>
+
+                                        <div *ngIf="UsuAic.DiagPrinc=='Enfermedades de aparato circulatorio'">
+
+                                            <label for="exampleFormControlSelect1">Diágnostico Relacionado</label>
+                                            <select type="text" required title="Este campo es obligatorio" class="form-control" id="exampleFormControlSelect1" [(ngModel)]="UsuAic.DiagRelac" name="DiagnosticoPrincipal">
+                                            <option *ngFor="let Diagrel of DiagnosticoCirculatorio" [value]="Diagrel">{{Diagrel}}</option>
+                                            </select>
+                                            <!-- Execute code here if statement true -->
+
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-5">
+                            <div class="panel body">
+                                <label>Tipo Régimen : </label>
+                                <br>
+                                <mat-radio-group class="tp-radio-group" [(ngModel)]="UsuAic.TipRegi">
+                                    <mat-radio-button type="text" required title="Este campo es obligatorio" class="tp-radio-button" *ngFor="let regi of Regimen" [value]="regi">
+                                        {{regi}}
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" type="submit" (click)="registrarUsuario()" data-dismiss="modal">Registrar Autorización</button >
+        </div>
+
+
+        <div class="container p-3 my-3 border ">
+            <h2>Historial</h2>
+
+            <form class="was-validated">
+                <div class="mb-3" class="tab table-responsive border bg-white">
+                    <table *ngIf="columnas_tablas" class="table table-striped " f>
+                        <thead>
+                            <tr>
+                                <th *ngFor="let column of columnas_tablas text-dark">{{column.titulo}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let usu of UsuariosAIC ;">
+
+                                <td>{{usu.Nombre}}</td>
+                                <td>{{usu.Apellido}}</td>
+                                <td>{{usu.AfiliacionIndi}}</td>
+                                <td>{{usu.TipoAutorizacion}}</td>
+                                <td>{{usu.TipoRegimen}}</td>
+                                <td>{{usu.DiagnosticoPrin}}</td>
+                                <td>{{usu.DiagnosticoRel}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        </div>
+         
+    </div>
+   
+</body>
